@@ -1,0 +1,137 @@
+Documentation for oneIP
+=================================
+
+*********************
+By Nathan Adams
+License: Apache License 2.0
+
+Languages: Python (others soon)
+*********************
+
+Description:
+oneIP was created to be a general purpose IP library. I felt that the libraries out there today lacked certain features or didn't work at all!
+Especially since that most IP libraries are written in a single language and you have to hunt around if you are using a different language.
+This project was created to address the need for one library in different languages.
+It's goal was to create a very simple library while being verstiatle.
+
+Examples:
+*********************
+
+Python:
+
+===================
+ipobj = IP("192.168.128.0/25")
+print ipobj.getIPv4Range()
+===================
+
+===================
+ipobj = IP("2620:0:860:2::/64")
+print ipobj.isIPv6AddressinRange("2621:0:860:2::1")
+===================
+
+C#:
+
+===================
+IP range = new IP("192.168.128.0/25");
+foreach (string ip in range.getIPv4Range())
+{
+	Console.WriteLine(ip);
+}
+===================
+
+Public Methods:
+*********************
+
+getIPv4SubnetMask:
+Return value: string
+-----------------------
+This function returns a string represtation of the subnet mask (ie "255.255.255.0")
+
+getIPv4NetworkAddress:
+Return value: string
+-----------------------
+This function returns a string represtation of the network address (ie "192.168.128.1")
+
+getIPv4BroadcastAddress:
+Return value: string
+-----------------------
+This function returns a string represtation of the network address (ie "192.168.128.255")
+
+getIPv4FirstAddress:
+Return value: string
+-----------------------
+Given a CIDR and IP address this function will return the string represtation of the first address in that network (ie "192.168.128.1")
+
+getIPv4LastAddress:
+Return value: string
+-----------------------
+Given an IP address in CIDR format this function will return the string represtation of the first address in that network (ie "192.168.128.254")
+
+getIPv4Range:
+Return value: array/list
+-----------------------
+Returns an array/list of all possible addresses from a given ip address in cidr notation
+
+@static method
+toIPv4Notation
+Input value: number
+Return value: string
+-----------------------
+Given a decimal repesentation of an IP address, returns the string repesentation of it
+
+@static method
+toIPv4Notation
+Input value: number
+Return value: array/list
+geIPv4Octects
+-----------------------
+Given a decimal repesentation of an IP address, returns an array/list of octects
+
+getOct
+Input value: number
+Return value: number
+-----------------------
+This function allows you to input a numeric value to get the specific octect of the IP address you have set (ie octect 1 of 192.168.128.10 is 10)
+
+getIPv6FirstAddress
+Return value: string
+-----------------------
+Given an IP address in CIDR format this function will return the string represtation of the first address in that network (ie give "2620:0:860:2::/64"
+ it will return this "2620:0:860:2:0:0:0")
+
+getIPv6LastAddress
+Return value: string
+-----------------------
+Given an IP address in CIDR format this function will return the string represtation of the first address in that network (ie give "2620:0:860:2::/64"
+ it will return this "2620:0:860:2:FFFF:FFFF:FFFF")
+
+* DANGER DANGER DANGER *
+getIPv6Range
+Return value: array/list
+* DANGER DANGER DANGER *
+-----------------------
+Returns an array/list of all possible addresses from a given IP address in cidr notation
+Here's the deal: IPv6 networks can be HUGE and if you call this function it will NOT page the results. If you are willing to wait and have the memory to store
+over 1000 strings, then by all means use it. Though, you may just want to call isIPv6AddressinRange because that will NOT create a list, it just compares the
+first/last address in numeric format.
+
+isIPv6AddressinRange
+Input value: string
+Return value: True/False (language independent)
+-----------------------
+It will return True/False depending on if the given IP is in that range
+
+isIPv4AddressinRange
+Input value: string
+Return value: True/False (language independent)
+-----------------------
+It will return True/False depending on if the given IP is in that range
+
+
+Excpetions:
+
+InvalidIPFormat
+InvalidIP
+InvalidIPInput
+InvalidMask
+IPNotSet
